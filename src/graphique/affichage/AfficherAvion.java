@@ -52,7 +52,7 @@ public class AfficherAvion {
         pan.add(boutonEffacer);
         pan.add(boutonRetour);
         Object[][] contenu = {};
-        String entete[] = {"N° Avion", "Type", "Type", "Forfait 1", "Forfait 2", "Forfait 3", "H Forfait 1", "H Forfait 2", "H Forfait 3", "Réduction", "Immatric."};
+        String entete[] = {"N° Avion", "Type", "Immatriculation", "Forfait 1", "Forfait 2", "Forfait 3", "H Forfait 1", "H Forfait 2", "H Forfait 3", "Réduction", "Immatric."};
         DefaultTableModel model = new DefaultTableModel(contenu, entete);
         JTable tableau = new JTable(model);
         fenetreAfficherAvion.getContentPane().add(new JScrollPane(tableau), BorderLayout.CENTER);
@@ -86,7 +86,7 @@ public class AfficherAvion {
 
                     for (int i = 0; i < tousLesAvions.size(); i++) {
                         Avions av1 = new Avions(tousLesAvions.get(i).getNum_avion(),tousLesAvions.get(i).getImmatriculation(),tousLesAvions.get(i).getType());
-                        String[] contenu = {Integer.toString(av1.getNum_avion()), av1.getImmatriculation()};
+                        String[] contenu = {Integer.toString(av1.getNum_avion()), av1.getType(), av1.getImmatriculation()};
                         model.addRow(contenu);
                     }
                 } catch (SQLException ex) {

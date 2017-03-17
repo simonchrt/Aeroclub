@@ -5,12 +5,15 @@
  */
 package graphique.ajout;
 
-import dao.impl.DaoAvionsImpl;
-import domaine.Avions;
+import dao.impl.*;
+import domaine.*;
 import graphique.Choix;
+import graphique.affichage.AfficherTypes;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
@@ -26,12 +29,33 @@ import javax.swing.JComboBox;
 public class AjoutAvion {
 
     public AjoutAvion() {
+        
+        DaoTypesImpl instance = new DaoTypesImpl();
+        List<Types> tousLesTypes = new ArrayList<Types>();
+        
+        try {
+        tousLesTypes = instance.tousLesTypes();
+
+        } catch (SQLException ex) {
+                    Logger.getLogger(AfficherTypes.class.getName()).log(Level.SEVERE, null, ex);
+                }
+        
+        
         JFrame fenetreAjoutAvion = new JFrame("Ajouter un avion");
         fenetreAjoutAvion.setLayout(null);
         JLabel numAvion = new JLabel("Numéro Avion");
         JLabel type = new JLabel("Type d'Avion");
-        Object[] elements = new Object[]{"Type 1", "Type 2", "Type 3", "Type 4", "Type 5"};
-        JComboBox listeTypes = new JComboBox(elements);
+        
+        // Types[] typeComboBox = {};
+        JComboBox listeTypes = new JComboBox();
+        
+
+        for(int i = 0; i < tousLesTypes.size(); i++){
+           
+           listeTypes.addItem(tousLesTypes.get(i).getTypes_libelle());
+
+        }
+     //   System.out.println(listeTypes.getSelectedItem());
         /*
         JLabel taux = new JLabel("Taux");
         JLabel forfait1 = new JLabel("Forfait 1");
@@ -136,6 +160,9 @@ public class AjoutAvion {
                     av1.setHeures_forfait3(Integer.parseUnsignedInt(formHeuresForfait3.getText()));
                     av1.setReduction_semaine(Integer.parseUnsignedInt(formReductionSemaine.getText())); */
                     av1.setImmatriculation(formImmatriculation.getText());
+                    DaoTypesImpl instanceType = new DaoTypesImpl();
+                    av1.setType(instanceType.sonId((String) listeTypes.getSelectedItem()));
+                    System.out.println(instanceType.sonId("Type 1"));
                     DaoAvionsImpl instance = new DaoAvionsImpl();
                     instance.ajoute(av1);
                     formNumAvion.setText("");

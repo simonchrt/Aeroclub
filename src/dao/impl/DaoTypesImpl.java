@@ -64,7 +64,7 @@ public void ajoute(Types prmTypes) throws SQLException {
                     
                     String tauxHoraire = prmTypes.getTypes_prixhoraire();
                     
-                    st.executeUpdate("INSERT INTO types VALUES(" + num_types + ",'" + libelle + "''" + tauxHoraire + "')");
+                    st.executeUpdate("INSERT INTO types VALUES(" + num_types + ",'" + libelle + "','" + tauxHoraire + "')");
 
                 } catch (Exception e) {
                     System.out.println(e);
@@ -179,5 +179,31 @@ public void ajoute(Types prmTypes) throws SQLException {
         }
         return lst;
     }
+    public String sonId(String prmtrLibelle) throws SQLException {
+        String num = null;
+            try {
+                Class.forName("org.postgresql.Driver");
+                try {
+                    bdd = DriverManager.getConnection("jdbc:postgresql://" + url + ":" + port + "/" + base, user, mdp);
+                    st = bdd.createStatement();
+
+                    try {
+                        rs = st.executeQuery("SELECT * FROM types WHERE types_libelle = '" + prmtrLibelle + "';");
+                    while (rs.next()) {
+                        num = rs.getString("num_types");
+                         System.out.println(rs.getString("num_types"));
+                    }
+ 
+                    } catch (Exception e) {
+                        System.out.println(e);
+                    }
+                } catch (Exception e) {
+                    System.out.println(e);
+                }
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+            return num;
+}
 
 }

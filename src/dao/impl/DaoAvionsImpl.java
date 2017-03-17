@@ -64,19 +64,12 @@ public class DaoAvionsImpl {
                 st = bdd.createStatement();
                 try {
                     int num_avion = prmAvion.getNum_avion();
-                /*    String type = prmAvion.getType();
-                    int taux = prmAvion.getTaux();
-                    int forfait1 = prmAvion.getForfait1();
-                    int forfait2 = prmAvion.getForfait2();
-                    int forfait3 = prmAvion.getForfait3();
-                    int heures_forfait1 = prmAvion.getHeures_forfait1();
-                    int heures_forfait2 = prmAvion.getHeures_forfait2();
-                    int heures_forfait3 = prmAvion.getHeures_forfait3();
-                    int reduction_semaine = prmAvion.getReduction_semaine(); */
+                    String type = prmAvion.getType();
+                    
                     String immatriculation = prmAvion.getImmatriculation();
                     /*PreparedStatement preparedStatement = bdd.prepareStatement("INSERT INTO avions VALUES(" + num_avion + "," + type + "," + taux + "," + forfait1 + "," + forfait2 + "," + forfait3 + "," + heures_forfait1 + "," + heures_forfait2 + "," + heures_forfait3 + "," + reduction_semaine + "," + immatriculation + ")");
                     preparedStatement.executeUpdate();*/
-                    st.executeUpdate("INSERT INTO avions VALUES(" + num_avion + ",'" + immatriculation + "')");
+                    st.executeUpdate("INSERT INTO avions VALUES(" + num_avion + ",'" + type + "','" + immatriculation + "')");
 
                 } catch (Exception e) {
                     System.out.println(e);
@@ -152,7 +145,7 @@ public class DaoAvionsImpl {
                 st = bdd.createStatement();
                 try {
                     int num_avion = prmAvion.getNum_avion();
-                    int type = prmAvion.getType().getNum_types();
+                    String type = prmAvion.getType();
                 /*    int taux = prmAvion.getTaux();
                     int forfait1 = prmAvion.getForfait1();
                     int forfait2 = prmAvion.getForfait2();
@@ -184,7 +177,7 @@ public class DaoAvionsImpl {
                 try {
                     rs = st.executeQuery("SELECT * FROM avions ORDER BY num_avion");
                     while (rs.next()) {
-                        lst.add(new Avions(rs.getInt(1), rs.getString(2),rs.getInt(3)));
+                        lst.add(new Avions(rs.getInt(1), rs.getString(3),rs.getString(2)));
                     }
                 } catch (Exception e) {
                     System.out.println(e);

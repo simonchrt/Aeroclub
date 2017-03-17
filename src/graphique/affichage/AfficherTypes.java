@@ -7,7 +7,6 @@ package graphique.affichage;
 
 import dao.impl.DaoTypesImpl;
 import domaine.Types;
-import domaine.Types;
 import graphique.Choix;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;

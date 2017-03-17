@@ -12,9 +12,9 @@ package domaine;
 public class Avions {
     private int num_avion;
     private String immatriculation;
-    private Types type;
+    private String type;
 
-    public Avions(int num_avion, String immatriculation, Types type) {
+    public Avions(int num_avion, String immatriculation, String type) {
         this.num_avion = num_avion;
         this.immatriculation = immatriculation;
         this.type = type;
@@ -39,11 +39,11 @@ public class Avions {
         this.immatriculation = immatriculation;
     }
 
-    public Types getType() {
+    public String getType() {
         return type;
     }
 
-    public void setType(Types type) {
+    public void setType(String type) {
         this.type = type;
     }
 

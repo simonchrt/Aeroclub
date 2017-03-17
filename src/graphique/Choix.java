@@ -21,14 +21,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
-import graphique.ajout.AjoutAvion;
-import graphique.ajout.AjoutCompte;
-import graphique.ajout.AjoutInstructeur;
-import graphique.ajout.AjoutMaintenance;
-import graphique.ajout.AjoutMembre;
-import graphique.ajout.AjoutOperation;
-import graphique.ajout.AjoutQualification;
-import graphique.ajout.AjoutVol;
+import graphique.ajout.*;
 import graphique.modification.ModificationAvion;
 import graphique.modification.ModificationCompte;
 import graphique.modification.ModificationInstructeur;
@@ -204,6 +197,14 @@ public class Choix {
             public void actionPerformed(ActionEvent e) {
                 fenetreChoix.setVisible(false);
                 new AjoutAvion();
+            }
+        });
+        
+        boutonAjoutType.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                fenetreChoix.setVisible(false);
+                new AjoutTypes();
             }
         });
  
